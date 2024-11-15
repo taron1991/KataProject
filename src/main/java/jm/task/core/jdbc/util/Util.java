@@ -16,12 +16,12 @@ public class Util {
             Class.forName("org.postgresql.Driver");
 
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection.setAutoCommit(false);
 
 
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (ClassNotFoundException | SQLException e) {
+
+            System.out.println(e.getMessage());
 
         }
 
