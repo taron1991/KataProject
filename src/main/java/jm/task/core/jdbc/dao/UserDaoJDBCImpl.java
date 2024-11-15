@@ -8,15 +8,13 @@ import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 
 public class UserDaoJDBCImpl implements UserDao {
 
     private static final String CREATE = "create table \"User\"(id serial primary key,name text,lastName text,age int)";
-    private static final String DROP = "DROP TABLE \"User\";";
+    private static final String DROP = "DROP TABLE \"User\"";
     private static final String INSERT = "insert into \"User\"(name,lastName,age) values(?,?,?)";
     private static final String REMOVE_BY_ID = "delete from \"User\" where id = ?";
     private static final String FIND_ALL = "select*from \"User\"";
@@ -122,8 +120,12 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate(TRUNCATE);
             connection.commit();
         } catch (SQLException e) {
+
             connection.rollback();
             throw e;
         }
     }
 }
+
+
+
